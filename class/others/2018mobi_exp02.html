@@ -1,0 +1,762 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="../../t_files/class.css" media="all" rel="stylesheet">
+<title>2018移动软件开发实验2</title>
+</head>
+<style>
+  body{
+    width:80%
+  }
+</style>
+
+<body width=800px>
+<br>
+<br>
+<h2 align=center>2018年春季学期 &nbsp&nbsp 《移动软件开发》</h2>
+<h2 align=center>实验二：电商实战</h2>
+<br><br>
+
+<p align=center>本周的实验课，我们的题目是微信小程序电商实战之路。<br>那么最终会做成什么样呢？<br>当然可以肯定不会只做一个静态demo哦，<br>先把我们小程序电商实战的整体架构发出来晒一下，<br>请看下图：</p>
+
+<p align=center><img src="https://upload-images.jianshu.io/upload_images/8122772-ab545a9f245050e3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700"></img></p>
+
+<br>
+<p align=center>好了，不啰嗦了 我们先看首页长什么样吧！</p>
+<br>
+
+<p align=center><img src="https://upload-images.jianshu.io/upload_images/8122772-fa2f6c54fd96db8c.gif"></img></p>
+<br>
+<p align=center>为了能够更好的表达出来，<br>
+先实现如下的功能</p>
+<br>
+<p align=center><img src="https://upload-images.jianshu.io/upload_images/8122772-f85fe3dc77687683.gif"></img></p>
+</body><br>
+
+<h2 align=center>1. 划分模块</h2>
+
+<p align=center> 大家知道电商平台一般分为首页、商品分类、购物车和个人中心4个核心模块，<br>那么我们首先在app.json的page里添加如下代码：
+<center><table><tr><td>
+<pre><code>"pages":[
+    "pages/home/home",
+    "pages/classify/classify",
+    "pages/cart/cart",
+    "pages/personal/personal"
+  ]
+</code></pre>
+</td></tr></table></center>
+
+<h2 align=center>2. 设计头部</h2>
+<center><table><tr><td>
+<pre><code>"window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Hi.World",
+    "navigationBarTextStyle":"black"
+  }
+</code></pre>
+</td></tr></table></center>
+
+<p align=center>背景颜色为白色，名称是Hi.World</p>
+
+<h2 align=center>3. 首页搜索</h2>
+
+<p align=center>上面素材看到的搜索部分颜值并不高，是因为录屏工具的问题，<br>实际效果看下图。</p>
+<p align=center><img src="https://upload-images.jianshu.io/upload_images/8122772-31de3f5e2e3c2200.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/636"></img></p>
+
+<p align=center>搜索用到了template 模板技术，<br>创建wxSearch模板目录，<br>添加wxSearch.js、wxSearch.json、wxSearch.wxml、wxSearch.wxss<br>
+此处省略模板代码，可以直接到Git上下载。 <br>地址如下：<br> https://github.com/yundianzixun/wxSearch-master<br>
+将下载的模板包放到和pages 同级目录，如下图所示</p>
+<p align=center><img src="https://upload-images.jianshu.io/upload_images/8122772-e576348c4560ce5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/396"></img></p>
+
+<p align=center>接下来我们把搜索模板放到首页，<br>会用到 home.wxml和home.wxss</p>
+
+<p align=center><strong>home.wxml</strong></p>
+<center><table><tr><td>
+<pre><code>&lt;!--导入wxSearch.wxml--&gt;
+&lt;import src="/wxSearch/wxSearch.wxml"/&gt;
+&lt;!--search start--&gt;
+&lt;view class="wxSearch-section"&gt;
+   &lt;view class="wxSearch-pancel"&gt;
+      &lt;input bindinput="wxSearchInput" bindfocus="wxSerchFocus" <br>value="{{wxSearchData.value}}" bindblur="wxSearchBlur" <br> class="wxSearch-input" placeholder='面膜'/&gt;
+      &lt;view class="placeholder"&gt;
+        &lt;icon class="weui-icon-search_in-box" type="search" <br>size="14"&gt;&lt;/icon&gt; 
+      &lt;/view&gt; 
+      &lt;view class='wxSearch-button'&gt;
+         &lt;text&gt;商品分类&lt;/text&gt;
+      &lt;/view&gt;  
+   &lt;/view&gt;
+&lt;/view&gt;
+&lt;!--引入模板，注意 is="wxSearch" 和模板template name名称相对应--&gt;
+&lt;template is="wxSearch" data="{{wxSearchData}}"/&gt;
+</code></pre>
+</td></tr></table></center>
+
+<p align=center><strong>home.wxss</strong></p>
+<center><table><tr><td>
+<pre><code>&lt;!--引入搜索模板样式--&gt;
+@import "/wxSearch/wxSearch.wxss";
+</code></pre>
+</td></tr></table></center>
+
+
+
+<p align=center>好啦，保存运行一下看看效果吧！</p>
+<h2 align=center>4. 制作导航栏</h2>
+<p align=center>先看我们要实现的效果图</p>
+<p align=center><img src="https://upload-images.jianshu.io/upload_images/8122772-fa82346ac12b5fe5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/634"></img></p>
+
+<p align=center>这个导航栏不是小程序底部导航栏，所以要写在页面里，<br>在你需要导航栏的地方加入如下代码就可以实现，<br>这里以首页为例：</p>
+<p align=center>home.wxss</p>
+<center><table><tr><td>
+<pre><code>/*设置页面整体布局*/
+page{  
+  display: flex;  
+  flex-direction: column;  
+  height: 100%;  
+} 
+.navbar{  
+  flex: none;  
+  display: flex;  
+  background: #fff;  
+}  
+.navbar .item{  
+  position: relative;  
+  flex: auto;  
+  text-align: center;  
+  line-height: 80rpx;  
+  font-size:14px;
+}  
+/* 顶部导航字体颜色 */
+.navbar .item.active{  
+   color: #e1007e;
+}  
+/* 顶部指示条属性 */
+.navbar .item.active:after{  
+  content: "";  
+  display: block;  
+  position: absolute;  
+  bottom: 0;  
+  left: 0;  
+  right: 0;  
+  height: 5rpx;  
+  background: #e1007e;  
+  width: 70%;
+  margin: 0px auto;
+}
+</code></pre>
+</td></tr></table></center>
+
+<p align=center>home.wxml</p>
+<center><table><tr><td>
+<pre><code>&lt;!--导航栏--&gt;  
+&lt;view class="navbar"&gt;  
+  &lt;text wx:for="{{navbar}}" data-idx="{{index}}" <br>class="item {{currentTab==index ? 'active' : ''}}" <br>wx:key="unique" bindtap="navbarTap"&gt;{{item}}&lt;/text&gt;  
+&lt;/view&gt;
+</code></pre>
+</td></tr></table></center>
+
+<p align=center>在home.wxml我们使用bindtap进行点击事件监听，设置事件名称为“navbarTap”并且在home.js里设置这个事件对应的逻辑处理。我们在组件上使用<strong>wx:for</strong>控制属性绑定一个数组，即可使用数组中各项的数据重复渲染该组件。默认数组的当前项的下标变量名默认为index，数组当前项的变量名默认为item（强烈建议如果还不会用<strong>wx:for</strong>一定要看看，因为在做数据循环渲染的时候经常要用）</p>
+<p align=center>home.js</p>
+<center><table><tr><td>
+<pre><code>&lt;!--导航栏--&gt;  
+// pages/home/home.js
+var app = getApp()
+Page({
+  data: {
+    navbar: ['今日推荐', '时尚', '国际', '美妆', '母婴', '居家'],
+    currentTab: 0,
+  },
+
+  // 导航切换监听
+  navbarTap: function (e) {
+    console.debug(e);
+    this.setData({
+      currentTab: e.currentTarget.dataset.idx
+    })
+  },
+})
+</code></pre>
+</td></tr></table></center>
+<p>备注：<strong>navba</strong>r 放置的是导航栏数据集合，currentTab：0 是位置坐标 第一次页面加载默认为0（第一个位置），<strong>currentTab: e.currentTarget.dataset.idx</strong>是把当前用户点击的Tab坐标传给currentTab。</p>
+
+<h2 align=center>5. 首页轮播Banner</h2>
+
+<p align=center>先看效果图</p>
+<p align=center><img src=https://upload-images.jianshu.io/upload_images/8122772-4997c8e876ef947f.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/319></img></p>
+
+<p align=center>依然在home 模块，需要改动的页面有home.js、home.wxml、home.wxss</p>
+<p align=center>home.wxml</p>
+<center><table><tr><td>
+<pre><code>&lt;!-- banner start--&gt;
+   &lt;swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}"
+   interval="{{interval}}" duration="{{duration}}"&gt;
+    &lt;block wx:for="{{imgUrls}}"&gt;
+      &lt;swiper-item&gt;
+        &lt;image src="{{item}}" /&gt;
+      &lt;/swiper-item&gt;
+    &lt;/block&gt;
+  &lt;/swiper&gt; 
+&lt;!-- banner end--&gt;
+</code></pre>
+</td></tr></table></center>
+
+<p align=center>swiper 是微信提供的滑块视图容器，直接可以拿来用，记住 &lt;swiper&gt; 里面一定要包含 &lt;swiper-item&gt;，自定义的 view 是无效的，控件的常用属性，</p>
+<p align=center>indicator-dots 是否显示面板指示点</p>
+<p align=center>autoplay 是否自动切换</p>
+<p align=center>interval 自动切换时间间隔</p>
+<p align=center>duration 滑动动画时长</p>
+<p align=center>想要了解多请查看<a href="https://link.jianshu.com?t=https://mp.weixin.qq.com/debug/wxadoc/dev/component/swiper.html" target="_blank" rel="nofollow">微信官方swiper视图容器</a><br>
+关于关于wx:for 上面已经介绍过了，不啰嗦了~~~</p>
+<p align=center>home.wxss</p>
+<center><table><tr><td>
+<pre><code>/* 设置swiper属性 */
+swiper {
+  height: 300rpx;
+  padding: 2px 10px;    
+}
+/*设置图片属性*/
+swiper-item image {
+  width: 100%;
+  height: 100%;
+}
+</code></pre>
+</td></tr></table></center>
+
+<p align=center>home.js</p>
+<center><table><tr><td>
+<pre><code>indicatorDots: true, //设置是否显示面板指示点
+autoplay: true, //设置是否自动切换
+interval: 3000, //设置自动切换时间间隔,3s
+duration: 1000, //  设置滑动动画时长1s
+imgUrls: [
+      'https://a4.vimage1.com/upload/flow/2017/10/20/117/15084947982974.jpg',
+      'https://a2.vimage1.com/upload/flow/2017/11/07/73/15100619325212.jpg',
+      'https://b.vimage1.com/upload/mst/2017/11/04/139/23b96f0e89abed2d9415e848fc3715ff_604x290_80.jpg'
+    ]
+</code></pre>
+</td></tr></table></center>
+
+<h2 align=center></h2>
+<p align=center>话不多说，先看实际效果图：</p>
+<p align=center><img src=https://upload-images.jianshu.io/upload_images/8122772-9bd0d10dd21f3c24.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/319></img></p>
+
+<p align=center>这个模块我们主要用到 <strong>scroll-view</strong> 视图容器，顾名思义就是滚动视图，当布局的内容超过屏幕容器的时候可以滑动开查看遮盖的内容，<strong>scroll-view</strong>可滚动视图区域属性详解：</p>
+<p align=center>scroll-x 允许横向滚动（类型：Boolean，默认值：false）</p>
+<p align=center>scroll-y 允许纵向滚动（类型：Boolean，默认值：false）</p>
+<p align=center>upper-threshold 距顶部/左边多远时（单位px），触发 scrolltoupper 事件（类型：Number，默认值：50）</p>
+<p align=center>lower-threshold 距底部/右边多远时（单位px），触发 scrolltolower 事件（类型：Number，默认值：50）</p>
+<p align=center>scroll-top 设置竖向滚动条位置（类型：Number）</p>
+<p align=center>scroll-left 设置横向滚动条位置（类型：Number）</p>
+<p align=center>scroll-into-view 值应为某子元素id（id不能以数字开头）。设置哪个方向可滚动，则在哪个方向滚动到该元素（类型：String）</p>
+<p align=center>scroll-with-animation 在设置滚动条位置时使用动画过渡（类型：Boolean，默认值：false）<br>
+更多请属性详情请查看<a href="https://link.jianshu.com?t=https://mp.weixin.qq.com/debug/wxadoc/dev/component/scroll-view.html" target="_blank" rel="nofollow">微信官方scroll-view视图容器</a></p>
+
+<p align=center>home.wxss</p>
+<center><table><tr><td>
+<pre><code>/*==========实时热销榜========*/
+.category-title {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+  margin-bottom: 0rpx;
+  padding: 0px 10px;
+  
+}
+.category-title .title{
+  font-size: 14px;
+  font-weight:900;
+}
+
+.category-title .line_name{
+  font-size: 10px;
+  color: #98989f;
+  display: flex;
+  justify-content:space-between;/**两边对齐**/
+
+}
+
+.goods {
+   display: flex;
+} 
+.goods-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+.goods-image{
+  width: 280rpx;
+  height: 300rpx; 
+}
+.goods-item text {
+  font-size: 25rpx;
+} 
+.goods-item p{
+  font-size: 30rpx;
+} 
+</code></pre>
+</td></tr></table></center>
+
+
+<p align=center>home.wxml</p>
+<center><table><tr><td>
+<pre><code>&lt;!--实时热销榜 start--&gt;
+&lt;view class="hots-container"&gt; 
+  &lt;view class="category-title"&gt;
+    &lt;text class="title"&gt;实时热销榜&lt;/text&gt;
+    &lt;view class="line_name"&gt;
+      &lt;text&gt;每15分钟更新一次&lt;/text&gt;
+      &lt;text&gt;查看全部 &gt;&lt;/text&gt;
+    &lt;/view&gt;
+  &lt;/view&gt;  
+  &lt;scroll-view scroll-x="true"&gt;
+      &lt;view class="goods"&gt;
+         &lt;block wx:for-items="{{goodsHotItems}}" wx:key="name"&gt;
+          &lt;view class="goods-item" catchtap="catchTapCategory" data-type="{{item.name}}" data-typeid="{{item.typeId}}"&gt;
+              &lt;image src="{{item.imageurl}}" class="goods-image" /&gt;   
+            &lt;text&gt;{{item.name}}&lt;/text&gt;
+            &lt;p&gt;￥{{item.newprice}}&lt;/p&gt;  
+          &lt;/view&gt;
+        &lt;/block&gt; 
+      &lt;/view&gt;
+    &lt;/scroll-view&gt;   
+&lt;/view&gt; 
+&lt;!--实时热销榜 end--&gt;
+</code></pre>
+</td></tr></table></center>
+
+<p align=center>home.js</p>
+<center><table><tr><td>
+<pre><code>// 实时热销榜
+    goodsHotItems: [
+      {
+        goodId: 0,
+        name: '天然植物唇膏2.4g',
+        url: 'bill',
+        imageurl: 'https://a3.vimage1.com/upload/merchandise/pdc/272/707/8870197248301707272/2/6922446703595-5_360x456_90.jpg',
+        newprice: "32.00",
+        oldprice: "59.00",
+      },
+      {
+        goodId: 1,
+        name: '流光水彩唇膏升级版 3.5g',
+        url: 'bill',
+        imageurl: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/03/8/4fb444e7-3417-4f4a-b5a1-7f1d884c610f_218x274_70.jpg',
+        newprice: "89.00",
+        oldprice: "99.00",
+      },
+      {
+        goodId: 2,
+        name: '卡姿兰蜗牛氧气泡泡面膜',
+        url: 'bill',
+        imageurl: 'https:////a3.vimage1.com/upload/merchandise/pdcvis/2017/08/24/167/28c3726f-dfdd-4a59-89ac-b79ea8e24f40_218x274_70.jpg',
+        newprice: "139.00",
+        oldprice: "159.00",
+      },
+      {
+        goodId: 3,
+        name: '特效润肤露',
+        url: 'bill',
+        imageurl: 'http://mz.djmall.xmisp.cn/files/product/20161201/14805828016.jpg',
+        newprice: "30.00",
+        oldprice: "80.00",
+      },
+      {
+        goodId: 4,
+        name: '御泥坊 | 美白嫩肤泥浆...',
+        url: 'bill',
+        imageurl: 'https://a4.vimage1.com/upload/merchandise/pdcvis/2017/11/03/98/f34a6c251abf45e5ba60a645f13c7757-5.jpg',
+        newprice: "79.00",
+        oldprice: "80.00",
+      }, {
+        goodId: 5,
+        name: '日本资生堂洗颜',
+        url: 'bill',
+        imageurl: 'http://mz.djmall.xmisp.cn/files/product/20161201/148058328876.jpg',
+        newprice: "30.00",
+        oldprice: "80.00",
+      }
+      , {
+        goodId: 6,
+        name: '玉兰油 | 水感透白光塑钻...',
+        url: 'bill',
+        imageurl: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/05/19/2/e5de903ab5ba4a6492f3574469fdfca9-5.jpg',
+        newprice: "145.00",
+        oldprice: "324.00",
+      }
+    ]
+</code></pre>
+</td></tr></table></center>
+
+<p align=center>好了大家赶紧运行一下效果看看吧~~~</p>
+<h2 align=center>6. 福利专场</h2>
+<p align=center>先看效果：</p>
+<p align=center><img src=https://upload-images.jianshu.io/upload_images/8122772-bb04d6766c9d39e6.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/319></img></p>
+
+
+
+<p align=center>home.wxml</p>
+<center><table><tr><td>
+<pre><code>&lt;!--福利专场 start--&gt;
+&lt;view class="welfare-container"&gt; 
+  &lt;view class="category-title"&gt;
+    &lt;text class="title"&gt;福利专场&lt;/text&gt;
+    &lt;view class="line_name"&gt;
+      &lt;text&gt;每天早10晚8准时上新&lt;/text&gt;
+    &lt;/view&gt;
+  &lt;/view&gt;  
+  &lt;scroll-view scroll-y="true"&gt;
+      &lt;view class="welfares"&gt;
+         &lt;block wx:for-items="{{goodsWelfareItems}}" wx:key="name"&gt;
+          &lt;view class="welfares-good" catchtap="catchTapCategory" data-type="{{item.name}}" data-typeid="{{item.typeId}}"&gt;
+            &lt;view&gt;
+              &lt;image src="{{item.imageurl}}" class="welfares-image" mode="widthFix"/&gt; 
+            &lt;/view&gt;
+            &lt;view class="product-name"&gt;
+              {{item.name}}
+            &lt;/view&gt;
+            &lt;view class="product-price-wrap"&gt;
+              &lt;p class="product-price-new"&gt;￥{{item.newprice}}&lt;/p&gt;  
+              &lt;p class="product-price-old"&gt;￥{{item.oldprice}}&lt;/p&gt; 
+              &lt;p class="discount"&gt;{{item.discount}}折&lt;/p&gt;  
+            &lt;/view&gt;
+            
+          &lt;/view&gt;
+        &lt;/block&gt; 
+      &lt;/view&gt;
+  &lt;/scroll-view&gt;  
+&lt;/view&gt; 
+&lt;!--福利专场 end--&gt;
+</code></pre>
+</td></tr></table></center>
+
+<p align=center>home.wxss</p>
+<center><table><tr><td>
+<pre><code>/**=========福利专场============**/
+.welfares{
+  display: flex;
+  justify-content: left;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin:10px 5px;
+}
+.welfares-good{
+  height: 560rpx; 
+  width: 47%;
+  margin:0px auto;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+  font-size: 24rpx;
+}
+.welfares-image{
+  width: 100%;
+  display: inline-block;
+  border: 1px #eee solid; 
+}
+.welfares-good .product-name{
+  color: #000;
+  height: 28px;
+  text-align:left;
+   margin: 0px 5px; 
+   margin-bottom: 5px; 
+}
+.product-price-wrap .product-price-new{
+  color: #e80080;
+  margin-left:5px;
+  font-weight:900;
+}
+.product-price-wrap .product-price-old{
+  color: #888;
+  text-decoration: line-through;
+  padding-left: 2px;
+}
+.product-price-wrap .discount{
+  position: absolute;
+  right: 5px;
+  background-color: #000;
+  color: #fff;
+}
+</code></pre>
+</td></tr></table></center>
+<p align=center>home.js</p>
+<center><table><tr><td>
+<pre><code>// 福利专场
+    goodsWelfareItems: [
+      {
+        goodId: 0,
+        name: '泊尔崖蜜蜜光面膜（5片盒装）',
+        url: 'bill',
+        imageurl: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/21/142/fb2960bf8e074d029c24315279289c19-5_218x274_70.jpg',
+        newprice: "86",
+        oldprice: "88",
+      },
+      {
+        goodId: 1,
+        name: '透无瑕矿物养护两用粉饼#03',
+        url: 'bill',
+        imageurl: 'https://a4.vimage1.com/upload/merchandise/pdcvis/2017/08/21/27/4b24e2a629644877866d3da755f6a36e-5_218x274_70.jpg',
+        newprice: "147.00",
+        oldprice: "150.00",
+      },
+      {
+        goodId: 2,
+        name: '川水水光面膜（5片盒装）',
+        url: 'bill',
+        imageurl: 'https://a2.vimage1.com/upload/merchandise/pdcvis/2017/08/21/86/7891361fdab348a1bc91aeca31fc77b1-5_218x274_70.jpg',
+        newprice: "86.00",
+        oldprice: "88.00",
+      },
+      {
+        goodId: 3,
+        name: '蜜三色渐变咬唇膏3.2g 03蜜橙动心恋',
+        url: 'bill',
+        imageurl: 'http://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/21/176/c3b9453a4d7f46c6a8fe78705f77352b-5_218x274_70.jpg',
+        newprice: "97.00",
+        oldprice: "99.00",
+      },
+      {
+        goodId: 4,
+        name: '时焕颜亮采套装',
+        url: 'bill',
+        imageurl: 'https://a2.vimage1.com/upload/merchandise/pdcvis/2017/08/21/93/69a6bc1c11eb4be184b7dffb43b8565b-5_218x274_70.jpg',
+        newprice: "398.00",
+        oldprice: "459.00",
+      }, {
+        goodId: 5,
+        name: '雪域眼霜套装',
+        url: 'bill',
+        imageurl: 'https://a4.vimage1.com/upload/merchandise/pdcvis/2017/08/23/127/53409c86f74647af915bc379427b97c2-5_218x274_70.jpg',
+        newprice: "238.00",
+        oldprice: "358.00",
+      }
+      , {
+        goodId: 6,
+        name: '凝时鲜颜冰肌水套装',
+        url: 'bill',
+        imageurl: 'https://a2.vimage1.com/upload/merchandise/pdcvis/2017/11/13/95/fb6c3d0c1f304b449dadb1f0100c1205-5_218x274_70.jpg',
+        newprice: "248.00",
+        oldprice: "348.00",
+      }
+      , {
+        goodId: 7,
+        name: '雪润皙白精选三件套',
+        url: 'bill',
+        imageurl: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/30/184/a5000156098940b5a05a0e696535ac20-5_218x274_70.jpg',
+        newprice: "348.00",
+        oldprice: "396.00",
+      }
+    ]
+</code></pre>
+</td></tr></table></center>
+<p align=center>好了，以上代码可以将数据渲染出来，<br>接下来会对以上代码做一下调整 可以进行下拉刷新。</p>
+<p align=center>home.wxml</p>
+<center><table><tr><td>
+<pre><code>&lt;view class="weui-loadmore" hidden="{{isHideLoadMore}}"&gt;
+    &lt;view class="weui-loading"&gt;&lt;/view&gt;
+    &lt;view class="weui-loadmore__tips"&gt;努力加载中&lt;/view&gt;
+  &lt;/view&gt; 
+</code></pre>
+</td></tr></table></center>
+<p align=center>home.wxss</p>
+<center><table><tr><td>
+<pre><code>/*  加载更多   */
+.weui-loading {
+  margin: 0 5px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-animation: weuiLoading 1s steps(12, end) infinite;
+  animation: weuiLoading 1s steps(12, end) infinite;
+  background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgxMDB2MTAwSDB6Ii8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTlFOUU5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTMwKSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iIzk4OTY5NyIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMDUuOTggNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjOUI5OTlBIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDYwIDc1Ljk4IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0EzQTFBMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSg5MCA2NSA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNBQkE5QUEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoMTIwIDU4LjY2IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0IyQjJCMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgxNTAgNTQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjQkFCOEI5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA1MCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDMkMwQzEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1MCA0NS45OCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDQkNCQ0IiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyMCA0MS4zNCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNEMkQyRDIiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDM1IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0RBREFEQSIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgtNjAgMjQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTJFMkUyIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0zMCAtNS45OCA2NSkiLz48L3N2Zz4=) no-repeat;
+  background-size: 100%;
+}
+.weui-loadmore {
+  width: 65%;
+  margin: 1.5em auto;
+  line-height: 1.6em;
+  font-size: 12px;
+  text-align: center;
+}
+.weui-loadmore__tips {
+  display: inline-block;
+  vertical-align: middle;
+  color: #888;
+}
+</code></pre>
+</td></tr></table></center>
+
+<p align=center>home.js</p>
+<center><table><tr><td>
+<pre><code>//加载更多
+  onReachBottom: function () {
+    console.log('加载更多');
+    setTimeout(() =&gt; {
+      this.setData({
+        isHideLoadMore: true,
+        goodsWelfareItems: [
+          {
+            goodId: 0,
+            name: '泊尔崖蜜蜜光面膜（5片盒装）',
+            url: 'bill',
+            imageurl: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/21/142/fb2960bf8e074d029c24315279289c19-5_218x274_70.jpg',
+            newprice: "86",
+            oldprice: "88",
+            discount: "8.8",
+          },
+          {
+            goodId: 1,
+            name: '透无瑕矿物养护两用粉饼#03',
+            url: 'bill',
+            imageurl: 'https://a4.vimage1.com/upload/merchandise/pdcvis/2017/08/21/27/4b24e2a629644877866d3da755f6a36e-5_218x274_70.jpg',
+            newprice: "147.00",
+            oldprice: "150.00",
+            discount: "8.8",
+          },
+          {
+            goodId: 2,
+            name: '川水水光面膜（5片盒装）',
+            url: 'bill',
+            imageurl: 'https://a2.vimage1.com/upload/merchandise/pdcvis/2017/08/21/86/7891361fdab348a1bc91aeca31fc77b1-5_218x274_70.jpg',
+            newprice: "86.00",
+            oldprice: "88.00",
+            discount: "8.8",
+          },
+          {
+            goodId: 3,
+            name: '蜜三色渐变咬唇膏3.2g 03蜜橙动心恋',
+            url: 'bill',
+            imageurl: 'http://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/21/176/c3b9453a4d7f46c6a8fe78705f77352b-5_218x274_70.jpg',
+            newprice: "97.00",
+            oldprice: "99.00",
+            discount: "8.8",
+          },
+          {
+            goodId: 4,
+            name: '时焕颜亮采套装',
+            url: 'bill',
+            imageurl: 'https://a2.vimage1.com/upload/merchandise/pdcvis/2017/08/21/93/69a6bc1c11eb4be184b7dffb43b8565b-5_218x274_70.jpg',
+            newprice: "398.00",
+            oldprice: "459.00",
+            discount: "8.8",
+          }, {
+            goodId: 5,
+            name: '雪域眼霜套装',
+            url: 'bill',
+            imageurl: 'https://a4.vimage1.com/upload/merchandise/pdcvis/2017/08/23/127/53409c86f74647af915bc379427b97c2-5_218x274_70.jpg',
+            newprice: "238.00",
+            oldprice: "358.00",
+            discount: "8.8",
+          }
+          , {
+            goodId: 6,
+            name: '凝时鲜颜冰肌水套装',
+            url: 'bill',
+            imageurl: 'https://a2.vimage1.com/upload/merchandise/pdcvis/2017/11/13/95/fb6c3d0c1f304b449dadb1f0100c1205-5_218x274_70.jpg',
+            newprice: "248.00",
+            oldprice: "348.00",
+            discount: "8.8",
+          }
+          , {
+            goodId: 7,
+            name: '雪润皙白精选三件套',
+            url: 'bill',
+            imageurl: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/30/184/a5000156098940b5a05a0e696535ac20-5_218x274_70.jpg',
+            newprice: "348.00",
+            oldprice: "396.00",
+            discount: "8.8",
+          }
+          , {
+            goodId: 8,
+            name: '雪润皙白精选三件套',
+            url: 'bill',
+            imageurl: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/30/184/a5000156098940b5a05a0e696535ac20-5_218x274_70.jpg',
+            newprice: "348.00",
+            oldprice: "396.00",
+            discount: "8.8",
+          }
+          , {
+            goodId: 9,
+            name: '雪润皙白精选三件套',
+            url: 'bill',
+            imageurl: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/30/184/a5000156098940b5a05a0e696535ac20-5_218x274_70.jpg',
+            newprice: "348.00",
+            oldprice: "396.00",
+            discount: "8.8",
+          }
+          , {
+            goodId: 10,
+            name: '雪润皙白精选三件套',
+            url: 'bill',
+            imageurl: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/30/184/a5000156098940b5a05a0e696535ac20-5_218x274_70.jpg',
+            newprice: "348.00",
+            oldprice: "396.00",
+            discount: "8.8",
+          }
+          , {
+            goodId: 11,
+            name: '雪润皙白精选三件套',
+            url: 'bill',
+            imageurl: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/30/184/a5000156098940b5a05a0e696535ac20-5_218x274_70.jpg',
+            newprice: "348.00",
+            oldprice: "396.00",
+            discount: "8.8",
+          }
+          , {
+            goodId: 12,
+            name: '雪润皙白精选三件套',
+            url: 'bill',
+            imageurl: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/30/184/a5000156098940b5a05a0e696535ac20-5_218x274_70.jpg',
+            newprice: "348.00",
+            oldprice: "396.00",
+            discount: "8.8",
+          }
+          , {
+            goodId: 13,
+            name: '雪润皙白精选三件套',
+            url: 'bill',
+            imageurl: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/30/184/a5000156098940b5a05a0e696535ac20-5_218x274_70.jpg',
+            newprice: "348.00",
+            oldprice: "396.00",
+            discount: "8.8",
+          }
+          , {
+            goodId: 14,
+            name: '雪润皙白精选三件套',
+            url: 'bill',
+            imageurl: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/30/184/a5000156098940b5a05a0e696535ac20-5_218x274_70.jpg',
+            newprice: "348.00",
+            oldprice: "396.00",
+            discount: "8.8",
+          }
+          , {
+            goodId: 15,
+            name: '雪润皙白精选三件套',
+            url: 'bill',
+            imageurl: 'https://a3.vimage1.com/upload/merchandise/pdcvis/2017/08/30/184/a5000156098940b5a05a0e696535ac20-5_218x274_70.jpg',
+            newprice: "348.00",
+            oldprice: "396.00",
+            discount: "8.8",
+          }
+
+        ],
+      })
+    }, 500)
+  }
+</code></pre>
+</td></tr></table></center>
+
+<p align=center>首页的功能基本都已经写完了。</p>
+
+
+
+
+</html>
