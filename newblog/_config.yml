@@ -86,7 +86,7 @@ keywords: "Jekyll, NexT"
 rss:
 
 # Specify the date when the site was setup
-since: 2017
+since: 2018
 
 # icon between year and author @Footer
 authoricon: heart
@@ -377,8 +377,7 @@ han: false
 # Swiftype Search API Key
 #swiftype_key:
 
-# Baidu Analytics ID
-baidu_analytics: f06f2965ddb9f0c33a5bbcf17fc0bcda
+
 
 # Duoshuo ShortName
 #duoshuo_shortname:
