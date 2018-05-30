@@ -1,0 +1,100 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="../t_files/main.css" media="all" rel="stylesheet">
+<title>SAR Change Detection</title>
+</head>
+
+<body>
+<br>
+<br>
+<h2 align=center>Automatic Change Detection in Synthetic Aperture Radar </h2>
+<h2 align=center>Images Based on PCANet</h2>
+<h3 align=center><em>IEEE Geoscience and Remote Sensing Letters</em>, 13(12), 2016, December</h3>
+<br>
+<h3 align=center>Feng Gao, Junyu Dong, Bo Li, Qizhi Xu</h3>
+<p align=center>Last modified: 24, March, 2017</p>
+
+<p style="text-align:justify">
+<b><em>Abstract: </em></b> 
+This letter presents a novel change detection method
+for multitemporal synthetic aperture radar images based on
+PCANet. This method exploits representative neighborhood features
+from each pixel using PCA filters as convolutional filters.
+Thus, the proposed method is more robust to the speckle noise
+and can generate change maps with less noise spots. Given two
+multitemporal images, Gabor wavelets and fuzzy c-means are
+utilized to select interested pixels that have high probability of
+being changed or unchanged. Then, new image patches centered
+at interested pixels are generated and a PCANet model is
+trained using these patches. Finally, pixels in the multitemporal
+images are classified by the trained PCANet model. The PCANet
+classification result and the preclassification result are combined
+to form the final change map. The experimental results obtained
+on three real SAR image data sets confirm the effectiveness of
+the proposed method.
+
+
+
+<br>
+<br>
+
+<p style="text-align:center">
+<img src="../pic/170404_1.png" border="0" class="portrait" width="80%">
+<br>
+<p style="text-align:center">
+<img src="../pic/170404_2.png" border="0" class="portrait" width="80%">
+<br>
+
+
+
+
+<h3>
+<p style="text-align:center">[ <a href="https://github.com/summitgao/CD_PCANET">MATLAB code</a> ]</p>
+The demo has not been well organized. Please contact me if you meet any problems.</h3>
+<br>
+
+<h3>Links to most related works</h3>
+<ol>
+<li> M. Gong, J. Zhao, J. Liu, Q. Miao, and L. Jiao, “Change detection in
+synthetic aperture radar images based on deep neural networks,” IEEE
+Trans. Neural Netw., vol. 27, no. 1, pp. 125–138, Jan. 2016.
+<li> L. Jia et al., “SAR image change detection based on iterative labelinformation
+composite kernel supervised by anisotropic texture,” IEEE
+Trans. Geosci. Remote Sens., vol. 53, no. 7, pp. 3960–3973, Jul. 2015.
+<li> T. Celik, “Unsupervised change detection in satellite images using
+principal component analysis and k-means clustering,” IEEE Geosci.
+Remote Sens. Lett., vol. 6, no. 4, pp. 772–776, Oct. 2009.
+<li> M. Gong, L. Su, M. Jia, and W. Chen, “Fuzzy clustering with a modified
+MRF energy function for change detection in synthetic aperture radar
+images,” IEEE Trans. Fuzzy Syst., vol. 22, no. 1, pp. 98–109, Feb. 2014.
+<li> H.-C. Li, T. Celik, N. Longbotham, and W. J. Emery, “Gabor feature
+based unsupervised change detection of multitemporal SAR images
+based on two-level clustering,” IEEE Geosci. Remote Sens. Lett., vol. 12,
+no. 12, pp. 2458–2462, Dec. 2015.
+<li> P. Zhang, M. Gong, L. Su, J. Liu, and Z. Li, “Change detection based
+on deep feature representation and mapping transformation for multispatial-resolution
+remote sensing images,” ISPRS J. Photogram. Remote
+Sens., vol. 116, pp. 24–41, Jun. 2016.
+<li> T.-H. Chan, K. Jia, S. Gao, J. Lu, Z. Zeng, and Y. Ma, “PCANet: A
+simple deep learning baseline for image classification?” IEEE Trans.
+Image Process., vol. 24, no. 12, pp. 5017–5032, Dec. 2015.
+</ol>
+
+
+
+<br><br>
+<br>
+>> <a href="http://summitgao.github.io">&nbsp return to Feng Gao's homepage&nbsp</a><img src="../t_files/link.png" height="15px"><br>
+<br>
+<hr>
+<br> Last modified: 13, March, 2016. <br>
+
+</body>
+
+</html>

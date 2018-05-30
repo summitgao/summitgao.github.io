@@ -1,0 +1,61 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="../t_files/main.css" media="all" rel="stylesheet">
+<title>SAR Change Detection</title>
+</head>
+
+<body>
+<br>
+<br>
+<h2 align=center>Change Detection from Synthetic Aperture Radar Images</h2>
+<h2 align=center>Based on Neighborhood-Based Ratio and Extreme Learning Machine</h2>
+<br>
+<h3 align=center>Feng Gao, Junyu Dong, Bo Li, Qizhi Xu, Cui Xie</h3>
+<p align=center>Last modified: 24, March, 2017</p>
+
+<p style="text-align:justify">
+<b><em>Abstract: </em></b> Change detection is of high practical value to hazard assessment, crop growth monitoring, and urban sprawl detection. A synthetic aperture radar (SAR) image is the ideal information source for performing change detection since it is independent of atmospheric and
+sunlight conditions. Existing SAR image change detection methods usually generate a difference image (DI) first and use clustering methods to classify the pixels of DI into changed class and unchanged class. Some useful information may get lost in the DI generation process. This paper proposed an SAR image change detection method based on neighborhood-based ratio (NR) and
+extreme learning machine (ELM). NR operator is utilized for obtaining some interested pixels that have high probability of being changed or unchanged. Then, image patches centered at these pixels are generated, and ELM is employed to train a model by using these patches. Finally, pixels in both original SAR images are classified by the pretrained ELM model. The preclassification result and the ELM classification result are combined to form the final change map. The experimental results obtained on three real SAR image datasets and one simulated dataset show that the proposed method is robust to speckle noise and is effective to detect change information among multitemporal SAR images.
+<br>
+<br>
+
+<p style="text-align:center">
+<img src="../pic/170331_1.png" border="0" class="portrait" width="80%">
+<br>
+
+<h3>
+<p style="text-align:center">[ <a href="https://github.com/summitgao/CD_NR_ELM">MATLAB code</a> ]</p>
+The demo has not been well organized. Please contact me if you meet any problems.</h3>
+<br>
+<br><br>
+
+<h3>Links to most related works</h3>
+<ol>
+<li>L. Jia et al., “SAR image change detection based on iterative label-information composite
+kernel supervised by anisotropic texture,” IEEE Trans. Geosci. Remote Sens. 53(7), 3960–3973 (2015).
+<li>D. Huong and R. Nagasawa, “Potential flood hazard assessment by integration of ALOS PALSAR and ASTER GDEM: a case study for the Hoa Chau commune, Hoa Vang district, in central Vietnam,” J. Appl. Remote Sens. 8(1), 083626 (2014).
+<li>J. Shang et al., “Estimating plant area index for monitoring crop growth dynamics using Landsat-8 and RapidEye images,” J. Appl. Remote Sens. 8(1), 085196 (2014).
+<li>Y. Yang et al., “Using multitemporal Landsat imagery to monitor and model the influences of landscape pattern on urban expansion in a metropolitan region,” J. Appl. Remote Sens. 8(1), 083639 (2014).
+<li>Z. Sun et al., “Long-term effects of land use/land cover change on surface runoff in urban areas of Beijing, China,” J. Appl. Remote Sens. 8(1), 084596 (2013).
+<li> S. Pettinato et al., “Snow cover area identification by using a change detection method applied to COSMO-SkyMed images,” J. Appl. Remote Sens. 8(1), 084684 (2014).
+</ol>
+
+
+
+<br><br>
+<br>
+>> <a href="http://summitgao.github.io">&nbsp return to Feng Gao's homepage&nbsp</a><img src="../t_files/link.png" height="15px"><br>
+<br>
+<hr>
+<br> Last modified: 13, March, 2016. <br>
+
+</body>
+
+</html>
