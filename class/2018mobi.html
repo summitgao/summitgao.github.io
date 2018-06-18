@@ -18,10 +18,24 @@
 周二 3-4节（10：10—12：00） 崂山校区6204教室<br>
 周三 5-6节（13：30—15：20） 崂山校区信南B317</h3>
 
+<p align=justify>&nbsp&nbsp 互联网时代，唯创新不破。微信是这个时代创新应用的一个领先者，小程序的出现更是给移动应用带来了一种新的理念，让我们有更多的想象空间和更加便捷流畅的使用体验。</p>
 <p align=justify>&nbsp&nbsp 微信小程序是微信团队于2017年1月9日正式发布的功能，它可以实现APP软件的原生交互操作效果，但是不像APP软件需要下载安装才能使用。微信小程序需要通过用户扫一扫或者搜一下就可以使用，不仅符合用户的使用习惯，也解放了用户手机内存的占用，同时给创业企业提供了宣传自己产品的渠道。创建微信小程序就可以被更多用户找到自己的产品，宣传自己的产品。 </p>
 <p align=justify>&nbsp&nbsp
-本课程分为两部分，包括微信小程序设计的基础知识和实战案例。第一部分为微信小程序入门，包括认识微信小程序、微信小程序框架分析、用微信小程序组件构建UI界面、必备的微信小程序API、微信小程序设计及问答；第二部分为综合案例应用。课程简单易懂，提供了丰富详尽的实战案例，同学们可以边做边学，快速掌握微信小程序的设计与实现。
+本课程以小程序实战项目为出发点，由浅入深地讲解微信小程序的基础知识和开发技术，包括小程序的基本概念和框架结构、数据绑定机制、模版化与模块化、数据缓存、常用组件和API以及全栈应用开发等。学习者可以通过“学中做”和“做中学”，掌握小程序的基本原理和前后端开发的实用技能，开启自己的小程序开发和上线之旅。</p>
 
+
+本课程的第5-6讲涉及到服务端的开发技术，课程示例项目使用NodeJS，源代码地址：<br>
+<ul>
+<li><b>客户端：</b> https://github.com/zhongkai/wxtodo-client
+<li><b>服务端：</b> https://github.com/zhongkai/wxtodo-server
+</ul>
+另外，关于git和nodejs的相关内容，可参考官网上的学习资料进行自学。<br>
+<ul>
+<li><b>学习资料：</b> github.com/phodal/github
+<li><b>node学习资料：</b> nodejs.org
+</ul>
+自2018年4月底开始，第4讲使用的针对豆瓣 api的第三方nginx转发代理不能访问了。<br>
+建议感兴趣的同学查找相关的资料搭建自己的转发代理，正好可以自己练练手。<br><br>
 
 <hr>
 <h3>成绩构成：团队项目 50% + 实验报告 50% + 出勤 + 奖励成绩 - 惩罚成绩</h3>
@@ -30,122 +44,115 @@
   <li>缺勤学生名单：<br> 
   &nbsp&nbsp&nbsp&nbsp 实验课1缺勤：拜卓锐<br>
   &nbsp&nbsp&nbsp&nbsp 实验课2缺勤：拜卓锐、邓宇、周星宇<br>
-
+  <li>课程后期未分组学生名单：邓宇、拜卓锐、齐浩、刘阳<br>
 	  
 </ul>
 
 <hr>
 <h3>教学大纲和讲义</h3>
 
-<table cellpadding=5px>
+<table cellpadding=5px align=center>
   <thead>
     <tr>
 		<th width=60  align=center>序号</th>
-		<th width=150 align=center>时间</th>
-		<th width=250 align=center>内容</th>
-		<th width=350 align=center>幻灯片与课程资料</th>
+		<th width=250 align=center>主题</th>
+		<th width=350 align=center>内容</th>
+		<th width=150 align=center>资源</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td align=center>1</td>
-      <td align=center>第一周</td>
-      <td>认识微信小程序：开发准备，开发工具的使用，Hello World程序的创建</td>
-      <td align=center>
-	  <a href="https://www.jianguoyun.com/p/DZaoCN0QrKKIBhjNhUY">课件</a>
-	  </td>
+      <td align=center>第一讲 微信小程序概述</td>
+      <td>
+          &nbsp&nbsp 1.1 小程序的基本情况<br>
+          &nbsp&nbsp 1.2 开发小程序的准备工作<br>
+          &nbsp&nbsp 1.3 小程序的设计规范<br>
+          &nbsp&nbsp 1.4 小程序的运营规范<br>          
+      </td>
+      <td align=center><a href=https://ouceducn-my.sharepoint.com/:f:/g/personal/gaofeng_ouc_edu_cn/EjdPFA4fg4ZEqAc-2OvhlGkB8IFIo5nRvXLImJstSdaPWw?e=nSrytG>视频链接</a></td>
     </tr>
     <tr>
       <td align=center>2</td>
-      <td align=center>第二周<br></td>
-      <td>微信小程序框架分析：小程序目录结构介绍，注册程序的应用，注册页面</td>
-      <td align=center>
-	  <a href="https://www.jianguoyun.com/p/DeIe-IUQrKKIBhjgqUY">课件</a>
-	  </td>
+      <td align=center>第二讲 初识微信小程序</td>
+      <td>
+        &nbsp&nbsp 2.1 实战项目：电影周周看V1<br>
+        &nbsp&nbsp 2.2 创建项目和目录文件结构<br>
+        &nbsp&nbsp 2.3 页面配置初探<br>
+        &nbsp&nbsp 2.4 view、text、image组件<br>
+        &nbsp&nbsp 2.5 快速实现基本布局<br>
+        &nbsp&nbsp 2.6 元素大小适配不同宽度屏幕<br>
+        &nbsp&nbsp 2.7 新增“每周推荐”weekly页<br>
+        &nbsp&nbsp 2.8 使用navigator组件<br>
+        &nbsp&nbsp 2.9 配置tabBar<br>
+        &nbsp&nbsp 2.10 配置全局的导航栏样式<br>
+      </td>
+      <td align=center><a href=https://ouceducn-my.sharepoint.com/:f:/g/personal/gaofeng_ouc_edu_cn/EtZCi80cPs5DvU9eARkowrwB8i8w53y7e79tup3zX_R25A?e=7EVc9u>视频链接</a><br><br>
+      <a href=https://ouceducn-my.sharepoint.com/:u:/g/personal/gaofeng_ouc_edu_cn/EQ66XUwu3CpOvRopYrgEa84BHKMg-AcMyF3uvEaGqymRlg?e=1QAaod>示例代码</a></td>
     </tr>
     <tr>
       <td align=center>3</td>
-      <td align=center>第二周<br>(实验课)</td>
-      <td>实验课内容：Hello world程序的创建，仿猫眼电影APP界面的创建</td>
-      <td align=center>
-	  <a href=https://www.jianguoyun.com/p/DSHM80YQrKKIBhitwEY>实验报告1模板</a><br>
-	  <a href=https://www.jianguoyun.com/p/DXVnQR0QrKKIBhi4wEY>实验图片素材</a>
-	  </td>
+      <td align=center>第三讲 电影周周看V2</td>
+      <td>
+        &nbsp&nbsp   3.1 数据绑定<br>
+        &nbsp&nbsp   3.2 小程序运行环境与基本架构<br>
+        &nbsp&nbsp   3.3 条件渲染<br>
+        &nbsp&nbsp   3.4 列表渲染<br>
+        &nbsp&nbsp   3.5 使用swiper组件<br>
+        &nbsp&nbsp   3.6 页面的生命周期函数<br>
+        &nbsp&nbsp   3.7 更新数据<br>
+        &nbsp&nbsp   3.8 事件机制<br>        
+      </td>
+      <td align=center><a href=https://ouceducn-my.sharepoint.com/:f:/g/personal/gaofeng_ouc_edu_cn/ErgAfLHZNVRNmConxIxez10BUV-zprDVak5STUaSav7_zA?e=l7Es3W>视频链接</a><br><br>
+      <a href=https://ouceducn-my.sharepoint.com/:u:/g/personal/gaofeng_ouc_edu_cn/EQMMn2QxK1lMh99VS8W59wYBTj12WI5-Zwj0529gmxekBw?e=m9yEuc>示例代码</a></td>
+      </tr>
     </tr>
-	<tr>
+    <tr>
       <td align=center>4</td>
-      <td align=center>第三周</td>
-      <td>微信小程序框架分析：<br>如何绑定数据</td>
-      <td align=center>
-	  课件续上周
-	  </td>
-    </tr>	
-	<tr>
+      <td align=center>第四讲 电影周周看V3</td>
+      <td>
+        &nbsp&nbsp  4.1 组件的自定义数据属性<br>
+        &nbsp&nbsp  4.2 电影详情页的基本框架<br>
+        &nbsp&nbsp  4.3 发起请求API<br>
+        &nbsp&nbsp  4.4 调用豆瓣API<br>
+        &nbsp&nbsp  4.5 动态设置导航栏<br>
+        &nbsp&nbsp  4.6 页面事件处理函数<br>
+      </td>
+      <td align=center><a href=https://ouceducn-my.sharepoint.com/:f:/g/personal/gaofeng_ouc_edu_cn/EiHZlkGjMJZMuFUOtGRdqLUBRXHVxDXHBL3VlQ6f5JAM3g?e=6TMTZp>视频链接</a><br><br>
+      <a href=https://ouceducn-my.sharepoint.com/:u:/g/personal/gaofeng_ouc_edu_cn/Easb3Xo_S5JPl17nSU69lB4BZbMZngbO5I8-nDdDbef4ZQ?e=AMJkQ7>示例代码</a></td>
+      </tr>
+    </tr>
+    <tr>
       <td align=center>5</td>
-      <td align=center>第四周</td>
-      <td>微信小程序框架分析：条件渲染、列表渲染、模板、引用</td>
-      <td align=center>
-	  课件续上周
-	  </td>
-    </tr>  
-    <tr>
-      <td align=center>6</td>
-      <td align=center>第四周<br>(实验课)</td>
-      <td>电商首页的构建</td>
-      <td align=center>
-	  <a href=https://www.jianguoyun.com/p/Dd4ibA4QrKKIBhjgt0k>实验报告2模板</a>
-	  </td>
-    </tr>       
-    <tr>
-      <td align=center>7</td>
-      <td align=center>第五周<br></td>
-      <td>构建UI界面:主要介绍视图容器组件：view,scroll-view,swiper等</td>
-      <td align=center>
-	  <a href=https://www.jianguoyun.com/p/Dfn1F0MQrKKIBhjuxEw>课件</a>
-	  </td>
-    </tr>       
-    <tr>
-      <td align=center>8</td>
-      <td align=center>第六周<br></td>
-      <td>构建UI界面:主要介绍视基础内容组件：icon,text,progress,richtext等</td>
-      <td align=center>
-	  课件续上周
-	  </td>
-    </tr>  
-    <tr>
-      <td align=center>9</td>
-      <td align=center>第六周<br>(实验课)</td>
-      <td>智能小蜜（基于olami开放开台）</td>
-      <td align=center>
-	  <a href=https://www.jianguoyun.com/p/DWv16WsQrKKIBhi0xUw>实验报告3模板</a>
-	  </td>
+      <td align=center>第五讲 组件化开发</td>
+      <td>
+        &nbsp&nbsp  5.1 组件化开发<br>
+        &nbsp&nbsp  5.2 什么是组件<br>
+        &nbsp&nbsp  5.3 定义一个组件<br>
+        &nbsp&nbsp  5.4 小程序中的组件<br>
+        &nbsp&nbsp  5.5 构建和引入自定义组件<br>
+        &nbsp&nbsp  5.6 自定义组件的设计<br>
+      </td>
+      <td align=center><a href=https://ouceducn-my.sharepoint.com/:f:/g/personal/gaofeng_ouc_edu_cn/EvQbM-iqYetIh18BaVbxr5ABAXiskbiMsHklCM-0HeSq9g?e=jHkj8S>视频链接</a></td>
+      </tr>
     </tr>
     <tr>
-      <td align=center>10</td>
-      <td align=center>第七周<br></td>
-      <td>构建UI界面：主要介绍表单组件、导航、媒体组件等</td>
-      <td align=center>
-	  课件续上周
-	  </td>
-    </tr>  	
-    <tr>
-      <td align=center>11</td>
-      <td align=center>第八周<br></td>
-      <td>微信小程序API：request, uploadFile, downloadFile等</td>
-      <td align=center>
-	  课件
-	  </td>
-    </tr>  	
-    <tr>
-      <td align=center>12</td>
-      <td align=center>第八周<br>(实验课)</td>
-      <td>图片上传与下载</td>
-      <td align=center>
-	  <a href=https://www.jianguoyun.com/p/DStFhMUQrKKIBhi-1k8>实验报告4模板</a>
-	  </td>
-    </tr>
+        <td align=center>6</td>
+        <td align=center>第六讲 构建小程序的全栈应用</td>
+        <td>
+          &nbsp&nbsp  6.1 小程序全栈开发<br>
+          &nbsp&nbsp  6.2 使用Express搭建WebServer<br>
+          &nbsp&nbsp  6.3 结合腾讯云开发小程序<br>
+          &nbsp&nbsp  6.4 路由以及自定义中间件<br>
+          &nbsp&nbsp  6.5 基于REST的API设计<br>
+          &nbsp&nbsp  6.6 数据以及文件存储<br>
+          &nbsp&nbsp  6.7 wxtodo小程序的在线化改造<br>         
+        </td>
+        <td align=center><a href=https://ouceducn-my.sharepoint.com/:f:/g/personal/gaofeng_ouc_edu_cn/ElmfIRCdQA9CqLio5pK6AwMBoQkHq2egEnS66U58JhzSmA?e=WoWXUN>视频链接</a></td>
+    </tr> 
   </tbody>
 </table>
+
 
 
 <hr>
@@ -186,8 +193,87 @@
 实验报告命名范例：16140051041-王文奇.docx<br>
 
 微信开发工具下载地址：https://www.jianguoyun.com/p/DceIjT0QrKKIBhjyl04<br>
-	
-<br>
+<br><br>
+
+<hr>
+<h3>小组分组情况</h3>
+
+<table cellpadding=5px>
+  <thead>
+    <tr>
+		<th width=60  align=center>序号</th>
+		<th width=450 align=center>小组成员</th>
+		<th width=250 align=center>项目名称</th>
+		<th width=80  align=center>备注</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td align=center>1</td>
+    <td align=center>梁纪琦 孟尧 马艳梅 陈伟麟 寇趁 张凯</td>
+    <td align=center>海大校园导航</td>
+    <td></td>
+  </tr>
+  <tr>
+      <td align=center>2</td>
+      <td align=center>王湘懿 王艺菲 施睿 曾趸 马揽月 席浩然</td>
+      <td align=center>和风天气</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td align=center>3</td>
+      <td align=center>刘修栋 吴敬宇 孙梦洁 刘宇璇 王润衡</td>
+      <td align=center>超级農農</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td align=center>4</td>
+      <td align=center>张涛 杨燊 丁昭旭 李旭 罗文刚</td>
+      <td align=center>云音乐播放小程序</td>
+      <td></td>
+  </tr>  
+  <tr>
+      <td align=center>5</td>
+      <td align=center>王鹤润 李青林 候健 杨富程 郑汉邦 王治威 高锋</td>
+      <td align=center>存储钱罐小程序</td>
+      <td></td>
+  </tr>   
+  <tr>
+      <td align=center>6</td>
+      <td align=center>李振冬 杨洋 郭颖 赵言龙 刘翔</td>
+      <td align=center>菜品评价小程序</td>
+      <td></td>
+  </tr>
+  <tr>
+      <td align=center>7</td>
+      <td align=center>劳伟贤 宋强 朱栩昊 韩江红 王圆秋 汪仲江</td>
+      <td align=center>生死时速小程序</td>
+      <td></td>
+  </tr>  
+  <tr>
+      <td align=center>8</td>
+      <td align=center>潘浩东 郑宝龙 龚卓然 范安琪 张继钊</td>
+      <td align=center>搬运工</td>
+      <td></td>
+  </tr> 
+  <tr>
+      <td align=center>9</td>
+      <td align=center>周星宇 张述汉</td>
+      <td align=center>飞行射击小游戏</td>
+      <td></td>
+  </tr>    
+  <tr>
+      <td align=center>10</td>
+      <td align=center>刘超 常超 王金喜 田源</td>
+      <td align=center>贪吃蛇小游戏</td>
+      <td></td>
+  </tr>    
+  </tbody>
+</table>
+
+
+
+
 <hr>
 <h3>课程TIPS</h3>
     感谢"咖啡"同学提供微信官方提供的全部小程序demo，下载地址为：<br>
@@ -209,10 +295,6 @@
 	&nbsp&nbsp<li>8月6日—8月10日：决赛训练营
 	&nbsp&nbsp<li>8月10日（待定）：决赛现场评比
 	<br><br>
-	另外，优达学城与微信合作推出“微信小程序纳米学位课程”，微信还为有志于成为小程序开发者的在校大学生提供高达100万元人民币的奖学金，让开发者能够以更轻松的学习门槛，掌握小程序的基本开发技能。同学们可以保持关注。<br>
-	
-	
-	
 
 
 
