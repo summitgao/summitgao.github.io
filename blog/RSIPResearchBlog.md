@@ -11,6 +11,10 @@
 
 
 
+[2018年6月13日](./2018年6月13日组会记录.html)
+
+本周由李艳东汇报了Generative Adversarial Networks for Hyperspectral Image Classification，这篇论文提出使用generative adversarial network (GAN) 解决高光谱分类问题
+
 [2018年6月6日](./2018年6月6日组会记录.html)
 
 本周由李艳东汇报了A Deep Learning Algorithm of Neural Network for the Parameterization of Typhoon-Ocean Feedback in Typhoon Forecast Models
