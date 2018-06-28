@@ -11,6 +11,10 @@
 
 
 
+[2018年6月23日](./2018年06月23日组会记录.html)
+
+由王栋汇报了论文 Spectral–Spatial Residual Network for Hyperspectral Image Classification: A 3-D Deep Learning Framework 
+
 [2018年6月13日](./2018年6月13日组会记录.html)
 
 本周由李艳东汇报了Generative Adversarial Networks for Hyperspectral Image Classification，这篇论文提出使用generative adversarial network (GAN) 解决高光谱分类问题
