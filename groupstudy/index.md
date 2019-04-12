@@ -2,7 +2,7 @@
 
 ### 第一部分：深度学习
 
-1. [深度学习介绍](./deeplearing/01_dl_intro.html)
+1. [深度学习介绍](./deeplearning/01_dl_intro.html)
 
 2. [深度学习框架](./deeplearning/02_dl_frames.html)
 

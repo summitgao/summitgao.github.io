@@ -667,7 +667,7 @@ tensor(9269.7607, grad_fn=<MseLossBackward>)
 opt = torch.optim.SGD(model.parameters(), lr=1e-5)
 ```
 
-注意，这里的 model.parameters() 是 optim.SGD 的一个参数，这样优化器才知道在训练步骤中应该修改哪些矩阵。另外，我们还可以指定一个[学习率](https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzA3MzI4MjgzMw%3D%3D%26mid%3D2650758606%26idx%3D2%26sn%3Dc77656ddc45118b238521ad92350425d%26chksm%3D871a99b0b06d10a657b802fe2d4d8f5d234b54960395647dfbc9ac51b3ed074257fec3f5a03b%26token%3D1620590487%26lang%3Dzh_CN)来控制参数每次的修改量。
+注意，这里的 model.parameters() 是 optim.SGD 的一个参数，这样优化器才知道在训练步骤中应该修改哪些矩阵。另外，我们还可以指定一个学习率来控制参数每次的修改量。
 
 **训练模型**
 
