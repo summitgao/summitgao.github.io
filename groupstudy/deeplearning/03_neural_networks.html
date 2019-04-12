@@ -1,0 +1,611 @@
+<!doctype html>
+<html style='font-size:14px !important'>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>03_neural_networks</title><link href='https://fonts.loli.net/css?family=Merriweather:900,900italic,300,300italic&subset=latin-ext' rel='stylesheet' type='text/css' />
+<link href='https://fonts.loli.net/css?family=Lato:900,300&subset=latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:first-child { margin-top: -20px; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  @page { margin: 20mm 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow-y: hidden; overflow-x: auto; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; word-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { word-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root { --control-text-color: #777; }
+h1, .h1, .f1 { font-size: 2rem; line-height: 2.5rem; }
+h2, .h2, .f2 { font-size: 1.5rem; line-height: 2rem; }
+h3, .h3, .f3 { font-size: 1.25rem; line-height: 1.5rem; }
+p, .p, .f4, h4, h5, h6, dl, ol, ul, pre[cid], div[cid], #typora-source { font-size: 1.125rem; line-height: 1.5rem; }
+h4 { font-size: 1.13rem; }
+body { font-family: "Palatino Linotype", STSong, serif; line-height: 1.5rem; font-weight: 400; }
+#write { max-width: 914px; color: rgb(51, 51, 51); }
+img { width: auto; max-width: 100%; }
+body { font-size: 1.5rem; box-sizing: border-box; }
+.ty-table-edit { background: rgb(237, 237, 237); }
+table { width: 100%; font-size: 1.125rem; }
+table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td, table > tfoot > tr > th, table > tfoot > tr > td { padding: 12px; line-height: 1.2; vertical-align: top; border-top: 1px solid rgb(51, 51, 51); }
+table > thead > tr > th { vertical-align: bottom; border-bottom: 2px solid rgb(51, 51, 51); }
+table > caption + thead > tr:first-child > th, table > caption + thead > tr:first-child > td, table > colgroup + thead > tr:first-child > th, table > colgroup + thead > tr:first-child > td, table > thead:first-child > tr:first-child > th, table > thead:first-child > tr:first-child > td { border-top: 0px; }
+table > tbody + tbody { border-top: 2px solid rgb(51, 51, 51); }
+p { font-weight: 300; line-height: 1.5; }
+abbr { border-bottom: 1px dotted black; cursor: help; }
+pre, code { font-family: Menlo, Monaco, "Courier New", monospace; }
+code, .md-fences { color: rgb(122, 122, 122); }
+.md-fences { padding: 0.5rem 1.125em; margin-bottom: 0.88em; font-size: 1rem; border: 1px solid rgb(122, 122, 122); }
+blockquote { padding: 1.33em; font-style: italic; border-left: 5px solid rgb(122, 122, 122); color: rgb(85, 85, 85); }
+blockquote em { color: rgb(0, 0, 0); }
+blockquote footer { font-size: 0.85rem; font-style: normal; background-color: rgb(255, 255, 255); color: rgb(122, 122, 122); border-color: transparent; }
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 { font-family: Lato, "Helvetica Neue", Helvetica, sans-serif; font-weight: bold; line-height: 1.2; margin: 1em 0px 0.5em; }
+@media screen and (min-width: 48em) {
+  .h1, h1 { font-size: 3.25rem; }
+  .h2, h2 { font-size: 2.298rem; }
+  .h3, h3 { font-size: 1.625rem; }
+  .h4, h4 { font-size: 1.3rem; }
+  #write > h4.md-focus::before, #write > h5.md-focus::before, #write > h6.md-focus::before { top: 1px; }
+  .p, p, li { font-size: 1.25rem; line-height: 1.8; }
+  table { font-size: 1.25rem; }
+}
+@media (max-width: 48em) {
+  blockquote { margin-left: 1rem; margin-right: 0px; padding: 0.5em; }
+  .h1, h1 { font-size: 2.827rem; }
+  .h2, h2 { font-size: 1.999rem; }
+  .h3, h3 { font-size: 1.413rem; }
+  .h4, h4 { font-size: 1.3rem; }
+}
+@media screen and (min-width: 64em) {
+  .h1, h1 { font-size: 4.498rem; }
+  .h2, h2 { font-size: 2.29rem; }
+  .h3, h3 { font-size: 1.9rem; }
+  .h4, h4 { font-size: 1.591rem; }
+  #write > h4.md-focus::before { top: 4px; }
+}
+a { color: rgb(70, 63, 92); text-decoration: underline; }
+#write { padding-top: 2rem; }
+#write pre.md-meta-block { min-height: 35px; padding: 2000px 1em 10px 0px; white-space: pre; border-width: 0px 30px; border-top-style: initial; border-bottom-style: initial; border-top-color: initial; border-bottom-color: initial; border-image: initial; border-left-style: solid; border-left-color: rgb(248, 248, 248); border-right-style: solid; border-right-color: rgb(248, 248, 248); width: 100vw; max-width: calc(100% + 60px); margin-left: -30px; margin-bottom: 2em; margin-top: -2010px; line-height: 1.5em; color: rgb(122, 122, 122); background-color: rgb(250, 250, 250); font-family: Lato, "Helvetica Neue", Helvetica, sans-serif; font-weight: 300; clear: both; font-size: 1.125rem; }
+.md-image > .md-meta { color: rgb(70, 63, 92); }
+.footnotes { font-size: 1.1rem; }
+.md-tag { font-family: Lato, "Helvetica Neue", Helvetica, sans-serif; }
+.code-tooltip { background: white; }
+.code-tooltip-content { font-size: 1.1rem; }
+.task-list { padding-left: 0px; }
+.md-task-list-item { padding-left: 34px; }
+.md-task-list-item > input { width: 1.25rem; height: 1.25rem; display: block; -webkit-appearance: initial; top: -0.5rem; margin-left: -1.6em; margin-top: calc(1rem - 7px); border: none; }
+.md-task-list-item > input:focus { outline: none; box-shadow: none; }
+.md-task-list-item > input::before { border: 1px solid rgb(85, 85, 85); border-radius: 1.5rem; width: 1.5rem; height: 1.5rem; background: rgb(255, 255, 255); content: " "; transition: background-color 200ms ease-in-out; display: block; }
+.md-task-list-item > input:checked::before, .md-task-list-item > input[checked]::before { background: rgb(51, 51, 51); border-width: 2px; display: inline-block; transition: background-color 200ms ease-in-out; }
+.md-task-list-item > input:checked::after, .md-task-list-item > input[checked]::after { opacity: 1; }
+.md-task-list-item > input::after { transition: opacity 0.05s ease-in-out; transform: rotate(-45deg); position: absolute; top: 0.4375rem; left: 0.28125rem; width: 0.9375rem; height: 0.5rem; border-width: 0px 0px 3px 3px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; content: " "; opacity: 0; }
+.md-tag { color: inherit; }
+.md-toc:focus .md-toc-content { margin-top: 19px; }
+#typora-sidebar { font-size: 1rem !important; }
+.html-for-mac #typora-sidebar { background-color: white; }
+.outline-content li, .outline-content ul { font-size: 1rem !important; }
+.outline-title { line-height: inherit; margin-top: 10px; }
+.outline-expander { width: 18px; }
+.outline-expander::before { content: "+"; font-family: inherit; color: rgb(108, 108, 108); font-size: 1.5rem; top: 0.1rem; }
+.outline-expander:hover::before { content: "+"; }
+.outline-item-open > .outline-item > .outline-expander::before { content: "-"; }
+#typora-source { font-family: Courier, monospace; color: rgb(106, 106, 106); }
+.os-windows #typora-source { font-family: inherit; }
+.cm-s-typora-default .cm-header, .cm-s-typora-default .cm-property, .CodeMirror.cm-s-typora-default div.CodeMirror-cursor { color: rgb(66, 139, 202); }
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number { color: rgb(119, 119, 119); }
+.preference-item-hint { margin-top: 16px; }
+.md-diagram-panel { margin-top: 24px; margin-left: -1.2em; }
+.md-mathjax-midline { background: rgb(250, 250, 250); }
+.enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip, .enable-diagrams pre.md-fences[lang="flow"] .code-tooltip, .enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip { bottom: -3.4em; }
+.dropdown-menu .divider { border-color: rgb(229, 229, 229); }
+
+
+
+
+
+ .typora-export li, .typora-export p, .typora-export,  .footnote-line {white-space: normal;} 
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><h2><a name='header-n0' class='md-header-anchor '></a>第三章  多层全连接神经网络</h2><p>　　深度学习的前身便是全连接神经网络，神经网络领域最开始主要是用来模拟人脑神经元系统，但是随后逐渐发展成了一项机器学习技术。多层全连接神经网络是现在深度学习各种网络的基础，了解它能够帮助我们更好地学其它内容。这一章从PyTorch入手，介绍PyTorch的处理对象、运算操作、自动求导，以及数据处理方法。接着从线性模型开始进入机器学习的内容，然后由Logistic回归引入分类问题，接着介绍全连接神经网络、反向传播算法、各种基于梯度的优化算法、数据预处理和训练技巧，最后用PyTorch实现多层全连接神经网络。</p><h2><a name='header-n3' class='md-header-anchor '></a>3.1 张量和梯度</h2><p>　　本质上来说，PyTorch 是一个处理张量的库。一个张量是一个数字、向量、矩阵或任何 n 维数组。我们用单个数字创建一个张量：</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># Number</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">t1</span> = <span class="cm-variable">tourch</span>.<span class="cm-property">tensor</span>(<span class="cm-number">4.</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">t1</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 63px;"></div><div class="CodeMirror-gutters" style="display: none; height: 63px;"></div></div></div></pre><p>结果为 tensor(4.)</p><p>4 . 是 4.0 的缩写。它用来表示你想创建浮点数的 Python（和 PyTorch）。我们可以通过检查张量的 dtype 属性来验证这一点：</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">t1</span>.<span class="cm-property">dtype</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 21px;"></div><div class="CodeMirror-gutters" style="display: none; height: 21px;"></div></div></div></pre><p>torch.float32</p><p>我们可以试着创建复杂一点的张量：</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># Vector</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">t2</span> = <span class="cm-variable">torch</span>.<span class="cm-property">tensor</span>([<span class="cm-number">1.</span>, <span class="cm-number">2</span>, <span class="cm-number">3</span>, <span class="cm-number">4</span>])</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">t2</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 63px;"></div><div class="CodeMirror-gutters" style="display: none; height: 63px;"></div></div></div></pre><p>tensor([1., 2., 3., 4.])</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># Matrix</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">t3</span> = <span class="cm-variable">torch</span>.<span class="cm-property">tensor</span>([[<span class="cm-number">5.</span>, <span class="cm-number">6</span>],[<span class="cm-number">7</span>, <span class="cm-number">8</span>], [<span class="cm-number">9</span>, <span class="cm-number">10</span>]])</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">t3</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 63px;"></div><div class="CodeMirror-gutters" style="display: none; height: 63px;"></div></div></div></pre><p>tensor([[5., 6.],
+              [7., 8.],
+              [9., 10.]])</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment"># 3-dimensional array</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">t4</span> = <span class="cm-variable">torch</span>.<span class="cm-property">tensor</span>([</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  [[<span class="cm-number">11</span>, <span class="cm-number">12</span>, <span class="cm-number">13</span>],</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; [<span class="cm-number">13</span>, <span class="cm-number">14</span>, <span class="cm-number">15</span>]],</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  [[<span class="cm-number">15</span>, <span class="cm-number">16</span>, <span class="cm-number">17</span>],</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; [<span class="cm-number">17</span>, <span class="cm-number">18</span>, <span class="cm-number">19</span>]]])</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">t4</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 147px;"></div><div class="CodeMirror-gutters" style="display: none; height: 147px;"></div></div></div></pre><p>tensor([[[11., 12., 13.],[13., 14., 15.]],[[15., 16., 17.],[17., 18., 19.]]])
+张量可以有任何维数。每个维度有不同的长度。我们可以用张量的.shape 属性来查看每个维度的长度。</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">t1</span>.<span class="cm-property">shape</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 21px;"></div><div class="CodeMirror-gutters" style="display: none; height: 21px;"></div></div></div></pre><p>torch.Size([])</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">t2</span>.<span class="cm-property">shape</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 21px;"></div><div class="CodeMirror-gutters" style="display: none; height: 21px;"></div></div></div></pre><p>torch.Size([4])</p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="python"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="python"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">t3</span>.<span class="cm-property">shape</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 21px;"></div><div class="CodeMirror-gutters" style="display: none; height: 21px;"></div></div></div></pre><p>torch.Size([3, 2])</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n23" mdtype="fences">t4.shape
+</pre><p>torch.Size([2, 2, 3])</p><p>我们可以将张量与常用的算数运算相结合。如下：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n26" mdtype="fences"># Create tensors
+x = torch.tensor(3.)
+w = torch.tensor(4., requires_grad=True)
+b = torch.tensor(5., requires_grad=True)
+</pre><p>我们已经创建了 3 个张量：x、w 和 b。w 和 b 有额外的参数 requires_grad，设置为 True。一会儿就可以看看它能做什么。</p><p>通过结合这些张量，我们可以创建新的张量 y。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n29" mdtype="fences"># Arithmetic operations
+y = w * x + b
+y
+</pre><p>tensor(17., grad_fn=<AddBackward0>)</p><p>如预期所料，y 是值为 3 * 4 + 5 = 17 的张量。PyTorch 的特殊之处在于，我们可以自动计算 y 相对于张量（requires_grad 设置为 True）的导数，即 w 和 b。为了计算导数，我们可以在结果 y 上调用.backward 方法。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n32" mdtype="fences"># Compute derivatives
+y.backward()
+</pre><p>y 相对于输入张量的导数被存储在对相应张量的.grad 属性中。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n34" mdtype="fences"># Display gradients
+print('dy/dx:', x.grad)
+print('dy/dw:', w.grad)
+print('dy/db:', b.grad)
+</pre><p>dy/dx:  None</p><p>dy/dw: tensor(3.)</p><p>dy/db: tensor(1.)</p><p>如预期所料，dy/dw 的值与 x 相同（即 3），dy/db 的值为 1。注意，x.grad 的值为 None，因为 x 没有将 requires_grad 设为 True。w_grad 中的「grad」代表梯度，梯度是导数的另一个术语，主要用于处理矩阵。</p><p><strong>与 Numpy 之间的互操作性</strong></p><p>Numpy 是 Python 中用于数学和科学计算的流行开源库。它支持在大型多维数组上进行高效运算，拥有一个支持多个库的大型生态系统。这些库包括：</p><ul><li>用于画图、可视化的 Matplotlib</li><li>用于图像和视频处理的 OpenCV</li><li>用于文件 I/O 和数据分析的 Pandas</li></ul><p>PyTorch 并没有重新创造 wheel，而是与 Numpy 很好地交互，以利用它现有的工具和库生态系统。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n49" mdtype="fences">import numpy as np
+x = np.array([[1, 2], [3, 4]])
+</pre><p>可以用 torch.fron_numpy 将 Numpy 数组转化为 PyTorch 张量。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n51" mdtype="fences"># Convert the numpy array to a torch tensor
+y = torch.from_numpy(x)
+</pre><p>接下来可以验证 Numpy 数组和 PyTorch 张量是否拥有类似的数据类型。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n53" mdtype="fences">x.dtype, y.dtype
+</pre><p>(dtype(&#39;int64&#39;), torch.int64)</p><p>可以使用张量的.to_numpy 方法将 PyTorch 张量转化为 Numpy 数组。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n56" mdtype="fences"># Conver a torch tensor to a numpy array
+z = y.numpy()
+</pre><p>PyTorch 和 Numpy 之间的互操作性真的非常重要，因为你要用的大部分数据集都可能被读取并预处理为 Numpy 数组。</p><p><strong>延伸阅读</strong></p><p>PyTorch 中的张量支持很多运算，这里列出的并不详尽。如果你想了解更多关于张量和张量运算的信息，可参考以下地址：</p><p>链接：<a href='https://pytorch.org/docs/stable/tensors.html' target='_blank' class='url'>https://pytorch.org/docs/stable/tensors.html</a></p><h2><a name='header-n61' class='md-header-anchor '></a>3.2 线性回归</h2><p>我们将讨论机器学习的一大基本算法：线性回归。我们将创建一个模型，使其能根据一个区域的平均温度、降雨量和湿度（输入变量或特征）预测苹果和橙子的作物产量（目标变量）。训练数据如下：</p><p><img src='http://ww1.sinaimg.cn/mw690/6deb72a3ly1g1znff14upj20iy054gno.jpg' alt='' referrerPolicy='no-referrer' /></p><p>在线性回归模型中，每个目标变量的估计方式都是作为输入变量的一个加权和，另外还会有某个常量偏移（也被称为偏置量）：</p><p>yield_apple = w11 * temp + w12 * rainfall + w13 * humidity + b1</p><p>yield_orange = w21 * temp + w22 * rainfall + w23 * humidity + b2 </p><p>可视化地看，这意味着苹果或橙子的产量是温度、降雨量或湿度的线性函数或平面函数：</p><p><img src='http://ww1.sinaimg.cn/mw690/6deb72a3ly1g1zng3qumej20gk0aedkc.jpg' alt='' referrerPolicy='no-referrer' /></p><p><em>因为我们只能展示三个维度，所以此处没有给出湿度</em></p><p>线性回归的「学习」部分是指通过检视训练数据找到一组权重（w11、w12…w23）和偏置 b1 和 b2），从而能根据新数据得到准确的预测结果（即使用一个新地区的平均温度、降雨量和湿度预测苹果和橙子的产量）。为了得到更好的结果，这个过程会对权重进行许多次调整，其中会用到一种名为「梯度下降」的优化技术。首先我们导入 Numpy 和 PyTorch：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n71" mdtype="fences">import numpy as np
+import torch
+</pre><p>训练数据可以使用两个矩阵表示：输入矩阵和目标矩阵；其中每个矩阵的每一行都表示一个观察结果，每一列都表示一个变量。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n73" mdtype="fences"># Input (temp, rainfall, humidity)
+inputs = np.array([[73, 67, 43],
+                   [91, 88, 64],
+                   [87, 134, 58],
+                   [102, 43, 37],
+                   [69, 96, 70]], dtype='float32')
+# Targets (apples, oranges)
+targets = np.array([[56, 70],
+                    [81, 101],
+                    [119, 133],
+                    [22, 37],
+                    [103, 119]], dtype='float32')
+</pre><p>我们已经分开了输入变量和目标变量，因为我们将分别操作它们。另外，我们创建的是 numpy 数组，因为这是常用的操作训练数据的方式：将某些 CSV 文件读取成 numpy 数组，进行一些处理，然后再将它们转换成 PyTorch 张量，如下所示：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n75" mdtype="fences"># Convert inputs and targets to tensors
+inputs = torch.from_numpy(inputs)
+targets = torch.from_numpy(targets)
+print(inputs)
+print(targets)
+</pre><p>权重和偏置（w11、w12…w23、b1 和 b2）也可表示成矩阵，并初始化为随机值。w 的第一行和 b 的第一个元素用于预测第一个目标变量，即苹果的产量；对应的第二个则用于预测橙子的产量。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n77" mdtype="fences"># Weights and biases
+w = torch.randn(2, 3, requires_grad=True)
+b = torch.randn(2, requires_grad=True)
+print(w)
+print(b)
+</pre><p>torch.randn 会创建一个给定形状的张量，其中的元素随机选取自一个均值为 0 且标准差为 1 的正态分布。该模型实际上就是一个简单的函数：执行输入 x 和权重 w 的矩阵乘法，再加上偏置 b（每个观察都会重复该计算）。</p><p><img src='http://ww1.sinaimg.cn/mw690/6deb72a3ly1g1znj7odsxj20iz06hmxp.jpg' alt='' referrerPolicy='no-referrer' /></p><p>我们可将该模型定义为：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n81" mdtype="fences">def model(x):
+    return x @ w.t() + b
+</pre><p>@ 表示 PyTorch 中的矩阵乘法，.t 方法会返回一个张量的转置。通过将输入数据传入模型而得到的矩阵是目标变量的一组预测结果。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n83" mdtype="fences"># Generate predictions
+preds = model(inputs)
+print(preds)
+</pre><p>tensor([[-70.6641, 253.4470],
+        [-96.9173, 336.8742],
+        [-74.1960, 435.6436],
+        [-91.2382, 213.2355],
+        [-85.8809, 344.9089]], grad_fn=<AddBackward0>)</p><p>接下来比较我们的模型的预测结果与实际的目标。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n86" mdtype="fences"># Compare with targets
+print(targets)
+</pre><p>tensor([[ 56.,  70.],
+        [ 81., 101.],
+        [119., 133.],
+        [ 22.,  37.],
+        [103., 119.]])</p><p>可以看到，我们的模型的预测结果与目标变量的实际值之间差距巨大。很显然，这是由于我们的模型的初始化使用了随机权重和偏置，我们可不能期望这些随机值就刚好合适。</p><p><strong>损失函数</strong></p><p>在我们改进我们的模型之前，我们需要一种评估模型表现优劣的方法。我们可以使用以下方法比较模型预测和实际目标：</p><ul><li>计算两个矩阵（preds 和 targets）之间的差异；</li><li>求这个差异矩阵的所有元素的平方以消除其中的负值；</li><li>计算所得矩阵中元素的平均值。</li></ul><p>结果是一个数值，称为均方误差（MSE）。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n99" mdtype="fences"># MSE loss
+def mse(t1, t2):
+    diff = t1 - t2
+    return torch.sum(diff * diff) / diff.numel()
+</pre><p>torch.sum 返回一个张量中所有元素的和，.numel 方法则返回一个张量中元素的数量。我们来计算一下我们模型的当前预测的均方误差：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n101" mdtype="fences"># Compute loss
+loss = mse(preds, targets)
+print(loss)
+</pre><p>tensor(39649.8359, grad_fn=<DivBackward0>)</p><p>我们解读一下这个结果：平均而言，预测结果中每个元素与实际目标之间的差距大约为 215（46194 的平方根）。考虑到我们所要预测的数值的范围本身只有 50-200，所以这个结果实在相当糟糕。我们称这个结果为损失（loss），因为它指示了模型在预测目标变量方面的糟糕程度。损失越低，模型越好。</p><p><strong>计算梯度</strong></p><p>使用 PyTorch，我们可以根据权重和偏置自动计算 loss 的梯度和导数，因为它们已将 requires_grad 设置为 True。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n106" mdtype="fences"># Compute gradients
+loss.backward()
+</pre><p>这些梯度存储在各自张量的 .grad 属性中。注意，根据权重矩阵求得的 loss 的导数本身也是一个矩阵，且具有相同的维度。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n108" mdtype="fences"># Gradients for weights
+print(w)
+print(w.grad)
+</pre><p>tensor([[-0.6603,  0.3072, -0.9914],
+        [ 0.7547,  2.3412,  0.9846]], requires_grad=True)
+tensor([[-13365.6172, -14606.6602,  -9090.0225],
+        [ 18949.9844,  20573.5020,  12574.3672]])</p><p>这个损失是我们的权重和偏置的一个二次函数，而我们的目标是找到能使得损失最低的权重集。如果我们绘制出任意单个权重或偏置元素下的损失的图表，我们会得到类似下图的结果。通过微积分，我们可以了解到梯度表示损失的变化率，即与权重和偏置相关的损失函数的斜率。</p><p>如果梯度元素为正数，则：</p><ul><li>稍微增大元素的值会增大损失。</li><li>稍微减小元素的值会降低损失。</li></ul><p><img src='http://ww1.sinaimg.cn/large/6deb72a3ly1g1zpzx8dx9j20t30avgni.jpg' alt='' referrerPolicy='no-referrer' /></p><p>作为权重的函数的 MSE 损失（蓝线表示梯度）</p><p>如果梯度元素为负数，则：</p><ul><li>稍微增大元素的值会降低损失。</li><li>稍微减小元素的值会增大损失。</li></ul><p><img src='http://ww1.sinaimg.cn/large/6deb72a3ly1g1zq0g75h4j20t10auabw.jpg' alt='' referrerPolicy='no-referrer' /></p><p>作为权重的函数的 MSE 损失（绿线表示梯度）</p><p>通过改变一个权重元素而造成的损失的增减正比于该元素的损失的梯度值。这就是我们用来提升我们的模型的优化算法的基础。</p><p>在我们继续之前，我们通过调用 .zero() 方法将梯度重置为零。我们需要这么做的原因是 PyTorch 会累积梯度，也就是说，我们下一次在损失上调用 .backward 时，新的梯度值会被加到已有的梯度值上，这可能会导致意外结果出现。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n129" mdtype="fences">w.grad.zero_()
+b.grad.zero_()
+print(w.grad)
+print(b.grad)
+</pre><p>tensor([[0., 0., 0.],
+        [0., 0., 0.]])
+tensor([0., 0.])</p><p><strong>使用梯度下降调整权重和偏置</strong></p><p>我们将使用梯度下降优化算法来降低损失和改善我们的模型，步骤如下：</p><ol start='' ><li>生成预测</li><li>计算损失</li><li>根据权重和偏置计算梯度</li><li>按比例减去少量梯度来调整权重</li><li>将梯度重置为零</li></ol><p>下面我们一步步地实现：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n145" mdtype="fences"># Generate predictions
+preds = model(inputs)
+print(preds)
+</pre><p>tensor([[-70.6641, 253.4470],
+        [-96.9173, 336.8742],
+        [-74.1960, 435.6436],
+        [-91.2382, 213.2355],
+        [-85.8809, 344.9089]], grad_fn=<AddBackward0>)</p><p>注意，这里的预测结果和之前的一样，因为我们还未对我们的模型做出任何修改。损失和梯度也是如此。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n148" mdtype="fences"># Calculate the loss
+loss = mse(preds, targets)
+print(loss)
+</pre><p>tensor([[-13365.6172, -14606.6602,  -9090.0225],
+        [ 18949.9844,  20573.5020,  12574.3672]])
+tensor([-159.9793,  224.8219])</p><p>最后，使用上面计算得到的梯度更新权重和偏置。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n151" mdtype="fences"># Adjust weights &amp; reset gradients
+with torch.no_grad():
+    w -= w.grad * 1e-5
+    b -= b.grad * 1e-5
+    w.grad.zero_()
+    b.grad.zero_()
+</pre><p>上面需要注意的几点：</p><ul><li>我们使用 torch.no_grad 指示 PyTorch 我们在更新权重和偏置时不应该跟踪、计算或修改梯度。</li><li>我们为梯度乘上了一个非常小的数值（这个案例中为 10^-5），以确保我们不会改变权重太多，因为我们只想在梯度的下降方向上迈出一小步。这个数值是这个算法的学习率（learning rate）。</li><li>在更新权重之后，我们将梯度重置为零，以免影响后续计算。</li></ul><p>现在我们来看看新的权重和偏置：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n161" mdtype="fences">print(w)
+print(b)
+</pre><p>tensor([[-0.5267,  0.4533, -0.9005],
+        [ 0.5652,  2.1355,  0.8589]], requires_grad=True)
+tensor([-0.4135, -0.8476], requires_grad=True)</p><p>使用新的权重和偏置，模型的损失应更低。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n164" mdtype="fences"># Calculate loss
+preds = model(inputs)
+loss = mse(preds, targets)
+print(loss)
+</pre><p>tensor(26765.1836, grad_fn=<DivBackward0>)</p><p>只是简单地使用梯度下降来稍微调整权重和偏置，我们就已经实现了损失的显著下降。</p><p><strong>多次训练</strong></p><p>为了进一步降低损失，我们可以多次使用梯度重复调整权重和偏置的过程。一次迭代被称为一个 epoch。我们训练模型 100 epoch 看看。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n169" mdtype="fences"># Train for 100 epochs
+for i in range(100):
+    preds = model(inputs)
+    loss = mse(preds, targets)
+    loss.backward()
+    with torch.no_grad():
+        w -= w.grad * 1e-5
+        b -= b.grad * 1e-5
+        w.grad.zero_()
+        b.grad.zero_()
+</pre><p>再次验证，现在损失应该会更低：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n171" mdtype="fences"># Calculate loss
+preds = model(inputs)
+loss = mse(preds, targets)
+print(loss)
+</pre><p>tensor(95.0308, grad_fn=<DivBackward0>)</p><p>可以看到，现在的损失比我们开始时低了很多。我们看看模型的预测结果，并将其与目标比较一下。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n174" mdtype="fences"># Predictions
+preds
+</pre><p>tensor([[ 59.2217,  69.7643],
+        [ 75.2371,  95.5674],
+        [131.2372, 145.4368],
+        [ 32.5877,  34.2057],
+        [ 83.0004, 111.7312]], grad_fn=<AddBackward0>)</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n176" mdtype="fences"># Targets
+targets
+</pre><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="" contenteditable="false" cid="n177" mdtype="fences">tensor([[ 56.,  70.],
+        [ 81., 101.],
+        [119., 133.],
+        [ 22.,  37.],
+        [103., 119.]])
+</pre><p>现在的预测结果已非常接近目标变量；而且通过训练模型更多 epoch，我们还能得到甚至更好的结果。</p><p><strong>使用 PyTorch 内置的线性回归</strong></p><p>上面的模型和训练过程是使用基本的矩阵运算实现的。但因为这是一种非常常用的模式，所以 PyTorch 配备了几个内置函数和类，让人能很轻松地创建和训练模型。</p><p>首先从 PyTorch 导入 torch.nn 软件包，其中包含了用于创建神经网络的效用程序类。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n182" mdtype="fences">import torch.nn as nn
+</pre><p>和之前一样，我们将输入和目标表示成矩阵形式。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n184" mdtype="fences" style="break-inside: unset;"># Input (temp, rainfall, humidity)
+inputs = np.array([[73, 67, 43], [91, 88, 64], [87, 134, 58], 
+                   [102, 43, 37], [69, 96, 70], [73, 67, 43], 
+                   [91, 88, 64], [87, 134, 58], [102, 43, 37], 
+                   [69, 96, 70], [73, 67, 43], [91, 88, 64], 
+                   [87, 134, 58], [102, 43, 37], [69, 96, 70]], 
+                  dtype='float32')
+
+# Targets (apples, oranges)
+targets = np.array([[56, 70], [81, 101], [119, 133], 
+                    [22, 37], [103, 119], [56, 70], 
+                    [81, 101], [119, 133], [22, 37], 
+                    [103, 119], [56, 70], [81, 101], 
+                    [119, 133], [22, 37], [103, 119]], 
+                   dtype='float32')
+
+inputs = torch.from_numpy(inputs)
+targets = torch.from_numpy(targets)
+</pre><p>我们这一次使用 15 个训练样本，以演示如何以小批量的形式处理大数据集。</p><p><strong>数据集和数据加载器</strong></p><p>我们将创建一个 TensorDataset，这让我们可以读取 inputs 和 targets 的行作为元组，并提供了 PyTorch 中用于处理许多不同类型的数据集的标准 API。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n188" mdtype="fences">from torch.utils.data import TensorDataset
+
+# Define dataset
+train_ds = TensorDataset(inputs, targets)
+train_ds[0:3]
+</pre><p>(tensor([[ 73.,  67.,  43.],
+         [ 91.,  88.,  64.],
+         [ 87., 134.,  58.]]), tensor([[ 56.,  70.],
+         [ 81., 101.],
+         [119., 133.]]))</p><p>TensorDataset 让我们可以使用数组索引表示法（上面代码中的 [0:3]）读取一小部分训练数据。它会返回一个元组（或配对），其中第一个元素包含所选行的输入变量，第二个元素包含目标，</p><p>我们还将创建一个 DataLoader，它可以在训练时将数据分成预定义大小的批次。它还能提供其它效用程序，如数据的混洗和随机采样。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n192" mdtype="fences">from torch.utils.data import DataLoader
+
+# Define data loader
+batch_size = 5
+train_dl = DataLoader(train_ds, batch_size, shuffle=True)
+</pre><p>数据加载器通常搭配 for-in 循环使用。举个例子：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n194" mdtype="fences">for xb, yb in train_dl:
+    print(xb)
+    print(yb)
+    break
+</pre><p>tensor([[ 87., 134.,  58.],
+        [102.,  43.,  37.],
+        [ 69.,  96.,  70.],
+        [102.,  43.,  37.],
+        [ 69.,  96.,  70.]])
+tensor([[119., 133.],
+        [ 22.,  37.],
+        [103., 119.],
+        [ 22.,  37.],
+        [103., 119.]])</p><p>在每次迭代中，数据加载器都会返回一批给定批大小的数据。如果 shuffle 设为 True，则在创建批之前会对训练数据进行混洗。混洗能帮助优化算法的输入随机化，这能实现损失的更快下降。</p><p><strong>nn.Linear</strong></p><p>除了人工地实现权重和偏置的初始化，我们还可以使用 PyTorch 的 nn.Linear 类来定义模型，这能自动完成初始化。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n199" mdtype="fences"># Define model
+model = nn.Linear(3, 2)
+print(model.weight)
+print(model.bias)
+</pre><p>Parameter containing:
+tensor([[-0.3113,  0.3951,  0.2852],
+[-0.0276, -0.5176,  0.4246]], requires_grad=True)
+Parameter containing:
+tensor([-0.0141,  0.1626], requires_grad=True)</p><p>PyTorch 模型还有一个很有用的 .parameters 方法，这能返回一个列表，其中包含了模型中所有的权重和偏置矩阵。对于我们的线性回归模型，我们有一个权重矩阵和一个偏置矩阵。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n202" mdtype="fences"># Parameters
+list(model.parameters())
+</pre><p>[Parameter containing:
+ tensor([[-0.3113,  0.3951,  0.2852],
+         [-0.0276, -0.5176,  0.4246]], requires_grad=True),
+ Parameter containing:
+ tensor([-0.0141,  0.1626], requires_grad=True)]</p><p>我们可以使用之前一样的方式来得到模型的预测结果：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n205" mdtype="fences"># Generate predictions
+preds = model(inputs)
+preds
+</pre><p>tensor([[ 15.9968, -18.2742],
+        [ 24.6793, -20.7239],
+        [ 42.3887, -46.9722],
+        [ -4.2238,  -9.1995],
+        [ 36.3992, -21.7098],
+        [ 15.9968, -18.2742],
+        [ 24.6793, -20.7239],
+        [ 42.3887, -46.9722],
+        [ -4.2238,  -9.1995],
+        [ 36.3992, -21.7098],
+        [ 15.9968, -18.2742],
+        [ 24.6793, -20.7239],
+        [ 42.3887, -46.9722],
+        [ -4.2238,  -9.1995],
+        [ 36.3992, -21.7098]], grad_fn=<AddmmBackward>)</p><p><strong>损失函数</strong></p><p>除了手动定义损失函数，我们也可使用内置的损失函数 mse_loss：</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n209" mdtype="fences"># Import nn.functional
+import torch.nn.functional as F
+</pre><p>nn.functional 软件包包含很多有用的损失函数和其它几个效用程序。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n211" mdtype="fences"># Define loss function
+loss_fn = F.mse_loss
+</pre><p>我们计算一下我们模型的当前预测的损失。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n213" mdtype="fences">loss = loss_fun(model(inputs), targets)
+print(loss)
+</pre><p>tensor(9269.7607, grad_fn=<MseLossBackward>)</p><p><strong>优化器</strong></p><p>除了以人工方式使用梯度操作模型的权重和偏置，我们也可使用优化器 optim.SGD。SGD 表示「随机梯度下降」。之所以是「随机」，原因是样本是以批的形式选择（通常会用到随机混洗），而不是作为单独一个数据组。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n217" mdtype="fences"># Define optimizer
+opt = torch.optim.SGD(model.parameters(), lr=1e-5)
+</pre><p>注意，这里的 model.parameters() 是 optim.SGD 的一个参数，这样优化器才知道在训练步骤中应该修改哪些矩阵。另外，我们还可以指定一个<a href='https://link.zhihu.com/?target=https%3A//mp.weixin.qq.com/s%3F__biz%3DMzA3MzI4MjgzMw%3D%3D%26mid%3D2650758606%26idx%3D2%26sn%3Dc77656ddc45118b238521ad92350425d%26chksm%3D871a99b0b06d10a657b802fe2d4d8f5d234b54960395647dfbc9ac51b3ed074257fec3f5a03b%26token%3D1620590487%26lang%3Dzh_CN'>学习率</a>来控制参数每次的修改量。</p><p><strong>训练模型</strong></p><p>我们现在已经准备好训练模型了。我们将遵循实现梯度下降的同一过程：</p><ul><li>生成预测</li><li>计算损失</li><li>根据权重和偏置计算梯度</li><li>按比例减去少量梯度来调整权重</li><li>将梯度重置为零</li></ul><p>唯一变化的是我们操作的是分批的数据，而不是在每次迭代中都处理整个训练数据集。我们定义一个效用函数 fit，可训练模型给定的 epoch 数量。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n233" mdtype="fences" style="break-inside: unset;"># Utility function to train the model
+def fit(num_epochs, model, loss_fn, opt):
+    
+    # Repeat for given number of epochs
+    for epoch in range(num_epochs):
+        
+        # Train with batches of data
+        for xb,yb in train_dl:
+            
+            # 1. Generate predictions
+            preds = model(xb)
+            
+            # 2. Calculate loss
+            loss = loss_fn(preds, yb)
+            
+            # 3. Compute gradients
+            loss.backward()
+            
+            # 4. Update parameters using gradients
+            opt.step()
+            
+            # 5. Reset the gradients to zero
+            opt.zero_grad()
+        
+        # Print the progress
+        if (epoch+1) % 10 == 0:
+            print('Epoch [{}/{}], Loss: {:.4f}'.format(epoch+1, num_epochs, loss.item()))
+</pre><p>上面需要注意的几点：</p><ul><li>我们使用之前定义的数据加载器来为每个迭代获取数据批次。</li><li>我们没有手动更新参数（权重和偏置），而是使用了 opt.step 来执行更新，并使用了 opt.zero_grad 来将梯度重置为零。</li><li>我们还添加了一个日志语句，能够显示每第 10 个 epoch 的最后一批数据的损失，从而可让我们跟踪训练进程。loss.item 会返回存储在损失张量中的实际值。</li></ul><p>训练模型 100 epoch。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n243" mdtype="fences">fit(100, model, loss_fn, opt)
+</pre><p>Epoch [10/100], Loss: 1.3765
+Epoch [20/100], Loss: 1.1817
+Epoch [30/100], Loss: 2.9769
+Epoch [40/100], Loss: 1.3210
+Epoch [50/100], Loss: 1.1224
+Epoch [60/100], Loss: 0.3655
+Epoch [70/100], Loss: 0.5386
+Epoch [80/100], Loss: 0.4578
+Epoch [90/100], Loss: 1.6593
+Epoch [100/100], Loss: 0.9839</p><p>接下来使用我们的模型生成预测结果，再验证它们与目标的接近程度。</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n246" mdtype="fences"># Generate predictions
+preds = model(inputs)
+preds
+</pre><p>tensor([[ 58.3422,  70.9988],
+        [ 81.3429, 101.1752],
+        [118.5515, 130.6639],
+        [ 28.4375,  41.5285],
+        [ 96.0359, 117.2896],
+        [ 58.3422,  70.9988],
+        [ 81.3429, 101.1752],
+        [118.5515, 130.6639],
+        [ 28.4375,  41.5285],
+        [ 96.0359, 117.2896],
+        [ 58.3422,  70.9988],
+        [ 81.3429, 101.1752],
+        [118.5515, 130.6639],
+        [ 28.4375,  41.5285],
+        [ 96.0359, 117.2896]], grad_fn=<AddmmBackward>)</p><pre spellcheck="false" class="md-fences mock-cm md-end-block" lang="python" contenteditable="false" cid="n248" mdtype="fences"># Compute with targets
+targets
+</pre><p>tensor([[ 56.,  70.],
+        [ 81., 101.],
+        [119., 133.],
+        [ 22.,  37.],
+        [103., 119.],
+        [ 56.,  70.],
+        [ 81., 101.],
+        [119., 133.],
+        [ 22.,  37.],
+        [103., 119.],
+        [ 56.,  70.],
+        [ 81., 101.],
+        [119., 133.],
+        [ 22.,  37.],
+        [103., 119.]])</p><p>实际上，这个预测结果非常接近我们的目标。现在，我们有了一个相当好的预测模型，可以根据一个地区的平均温度、降雨量和湿度预测苹果和橙子的产量。</p><h2><a name='header-n251' class='md-header-anchor '></a>4.3 使用 logistic 回归实现图像分类</h2><p>&nbsp;</p></div>
+</body>
+</html>
