@@ -9,7 +9,7 @@ html{
  }
 body{
     font-family: sans-serif;
-    font-size: 13pt;
+    font-size: 11pt;
 }
 .profile-section{
     background: #f7f7f7;
@@ -197,4 +197,8 @@ a:hover{
 .publication-hr{
   border: 0;
   border-top: 1px solid #DDDDDD;
+}
+
+ol>li {
+  margin-bottom: 10px;
 }
