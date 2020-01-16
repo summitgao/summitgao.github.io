@@ -53,10 +53,10 @@ body{
 }
 
 .profile-link a {
-  color: white;
+  color: black;
 }
 .profile-link a:hover {
-  color: #DDDDDD;
+  color:  black;
 }
 
 .profile-block {
@@ -70,7 +70,7 @@ body{
 }
 
 .profile-content-block{
-    color: white;
+    color: black;
     padding-top: 20px ;
 }
 
@@ -93,7 +93,7 @@ body{
 
 
 .social-photo{
-    width: 70px !important;
+    width: 40px !important;
     margin-right: 10px;
     padding-bottom: 10px;
 }
@@ -139,7 +139,7 @@ body{
 }
 
 .parallax-container {
-  min-height: 380px;
+  min-height: 280px;
   line-height: 0;
   height: auto;
   color: rgba(255,255,255,.9);
