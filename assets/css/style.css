@@ -1,12 +1,16 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:500&subset=latin,latin-ext);
 
 body {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 400;
 	color: #2c3e50;
-    font-family: Tahoma, Arial, sans-serif;
-/*     margin: 0 auto; */
+    font-family: Cambria, sans-serif;
 }
+
+p {
+    text-align:justify;
+}
+
 div.ccontent {
     zoom: 1;
     display*: inline;
@@ -19,14 +23,7 @@ div.ccontent {
     padding-left: 10px;
     padding-right: 10px;
 }
-/* .div_left {
-    width: 40%;
-    float: left;
-}
-.div_right {
-    width: 60%;
-    float: right;
-} */
+
 img.img-circle {
     max-width:100%;
     height:auto;
